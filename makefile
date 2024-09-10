@@ -1,4 +1,4 @@
-version := 0.4.1
+version := 0.4.2
 
 CHECK_FILE_SIZE= (\
 	FSIZE=$$(du -b ./builds/13_blades_${version}.prod.zip | cut -f 1); \
@@ -13,7 +13,7 @@ CHECK_FILE_SIZE= (\
 build:
 	advpng -z -4 -i 20 ./assets/*.png
 	mkdir -p ./builds/tmp/scripts
-	esbuild ./scripts/game.mjs --bundle --minify --format=iife --outfile=./builds/tmp/scripts/game.mjs
+	esbuild ./scripts/game.js --bundle --minify --format=iife --outfile=./builds/tmp/scripts/game.js
 	zip -r ./builds/13_blades_${version}.prod.zip assets index.html
 	env -C ${PWD}/builds/tmp zip -r -g ../13_blades_${version}.prod.zip ./scripts
 	advzip -z -4 -i 20 ./builds/13_blades_${version}.prod.zip
